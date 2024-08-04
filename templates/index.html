@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet Counter</title>
+    <style>
+        body {
+            background-color: #FFDFD6; 
+            font-family: Arial, sans-serif;
+            color: #694F8E; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #987D9A; 
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .main-container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 10px; 
+        }
+        .left-column {
+            flex: 2; 
+            background-color: #FFFFFF; 
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .right-column {
+            flex: 3; 
+            text-align: center;
+            padding: 10px;
+            background-color: #FFFFFF; 
+            border-radius: 8px;
+        }
+        h1 {
+            color: #694F8E; 
+        }
+        form {
+            text-align: center;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 10px 0;
+        }
+        input[type="submit"] {
+            background-color: #694F8E;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #B692C2; 
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .image-container div {
+            text-align: center;
+        }
+        .image-container img {
+            width: 100; 
+            max-height: 280px; 
+            object-fit: contain; 
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .count {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #694F8E; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Sheet Counting Application</h2>
+    </header>
+    <div class="main-container">
+        <div class="left-column">
+            <h1>Upload Image to Count Sheets</h1>
+            <form action="/" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <input type="submit" value="Upload and Count">
+            </form>
+        </div>
+        <div class="right-column">
+            {% if original %}
+                <div class="count">Number of Sheets: {{ count }}</div>
+                <div class="image-container">
+                    <div>
+                        <h3>Original Image</h3>
+                        <img src="{{ original }}" alt="Uploaded Image">
+                    </div>
+                    <div>
+                        <h3>Enhanced Image</h3>
+                        <img src="{{ enhanced }}" alt="Enhanced Image">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Sheet Counter. All rights reserved.</p>
+    </footer>
+</body>
+</html>
